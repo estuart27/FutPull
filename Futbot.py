@@ -3,9 +3,10 @@ from langchain_community.document_loaders import PyMuPDFLoader, WebBaseLoader
 from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 from Analise_Dados import carregar_documento_web
+from PesquisaMulti import pesquisar
 
 # URL da notícia
-URL = 'https://www.sofascore.com/football/match/corinthians-bahia/fOshO#id:13473345'
+URL = 'https://www.sofascore.com/football/match/club-atletico-union-de-santa-fe-cruzeiro/eOseob#id:13640387'
 
 # Caminho do arquivo PDF
 CAMINHO_PDF = 'static/dados.pdf'
@@ -23,36 +24,38 @@ def carregar_documento_pdf(caminho: str) -> str:
 
 
 # Função principal para responder com base no PDF e na web
-def responder_com_pdf(mensagem: str) -> str:
-    """Gera uma resposta baseada no conteúdo do PDF e da web."""
-    # Inicializa o modelo
-    # chat = ChatGroq(model='llama-3.3-70b-versatile')
+# Adapte a função para incluir os dados da pesquisa na web
+def responder_com_pdf(mensagem: str, time: str) -> str:
+    """Gera uma resposta baseada no conteúdo do PDF, da web e da pesquisa SerpAPI."""
     chat = ChatGroq(model="llama-3.3-70b-versatile")
 
-    # Carrega os dados da web e do PDF
+    # Carrega os dados da web, do PDF e da pesquisa
     documento_web = carregar_documento_web(URL)
     documento_pdf = carregar_documento_pdf(CAMINHO_PDF)
+    dados_pesquisa = pesquisar(time)  # Obtém os dados da pesquisa
 
+    # Formata o prompt corretamente
     template = ChatPromptTemplate.from_messages([
-        ("system", "Você é um apostador esportivo, e faça analise da partida, com base na seguintes informações: {informações_jogo}."), #Colocar aqui o perfil de um apostador que ter mais acertabilidade 
-        ("system", "Agora Cria aposta com base nesses parametros: {parametro}."),
-        ("system", "Quero que voce me passe qual aposta eu fazer como palpite , pelo menos 4 variação de apostas "),
+        ("system", "Você é um apostador esportivo e faz análise da partida com base nas seguintes informações: {informações_jogo}, {dados_pesquisa}."),
+        ("system", "Agora crie apostas com base nesses parâmetros: {parametro}."),
+        ("system", "Quero que você me passe qual aposta devo fazer como palpite, com pelo menos 4 variações de apostas."),
         ("user", "{input}")
     ])
     
-    # Formata o prompt corretamente
     prompt_formatado = template.format_prompt(
         informações_jogo=documento_web,
+        dados_pesquisa=dados_pesquisa,  # Inclui os dados da pesquisa
         parametro=documento_pdf,
-        input=mensagem  # Alterado de 'pergunta' para 'input' para corresponder ao template
+        input=mensagem
     )
 
-    # Faz a chamada ao modelo e retorna a resposta
     resposta = chat.invoke(prompt_formatado.to_messages())
     return resposta.content
 
 # Testando a função
-resposta = responder_com_pdf("Qual é o time que vai ganhar? me de somente 4 apostas e o nome do time que vai ganhar")
+time = "Cruzeiro x Union de Santa Fe"
+# resposta = responder_com_pdf("Qual é o time que vai ganhar? Me dê somente 4 apostas e o nome do time que vai ganhar", time)
+resposta = responder_com_pdf("Verifique todos essas dados e de 1 a 10 , que nota vc da pra minha informaçoes ? estam completas para tirar uma analise esportiva precisa ? cosideraçoes ?", time)
 print(resposta)
 
 

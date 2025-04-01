@@ -31,11 +31,11 @@ def carregar_documento_web(url: str) -> str:
 
     resposta = chain.invoke({'documentos_informados': documento, 'input': "Quero que você faça resumo e deixe esses dados mais organizada para analise que vou fazer para uma apostar esportiva mais acertiva!"})
     # print('Informação organizada')
-    print(resposta.content)
+    # print(resposta.content)
 
-    return resposta.content
+    return resposta.content 
 
 if __name__ == "__main__":
     # URL da notícia
-    URL = 'https://www.ogol.com.br/estatisticas/bahia-corinthians/t2231-t2234'
+    URL = 'https://www.sofascore.com/football/match/real-madrid-real-sociedad/zgbsEgb#id:13466670'
     carregar_documento_web(URL)
