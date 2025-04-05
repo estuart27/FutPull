@@ -1,0 +1,18 @@
+# from PIL import Image
+# import pytesseract
+
+# texto = pytesseract.image_to_string(Image.open("imagem.png"))
+
+# import pandas as pd
+
+# df = pd.read_excel("dados.xlsx")
+# print(df.head())
+
+
+
+
+# def carregar_documento_web(url: str) -> str:
+#     """Carrega e retorna o conteúdo textual de uma página web."""
+#     loader = WebBaseLoader(url)
+#     documentos = loader.load()
+#     return " ".join(doc.page_content for doc in documentos if doc.page_content)

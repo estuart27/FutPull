@@ -1,0 +1,54 @@
+INÍCIO
+  |
+  v
+[INPUT do Usuário: Nome do Jogo + Mensagem/Comando]
+  |
+  v
+[CARREGAR DADOS]
+  ├─> [PDF: Estatísticas, Odds, Informações históricas]
+  ├─> [Web: Notícia atual da partida (ex: Sofascore)]
+  └─> [Pesquisa: Google/SERPAPI (lesões, escalações, últimas partidas, clima, etc.)]
+  |
+  v
+[PRÉ-PROCESSAMENTO DOS DADOS]
+  ├─> Limpeza de texto
+  ├─> Remoção de duplicatas e irrelevâncias
+  └─> Normalização de informações (ex: times em minúsculo, nomes unificados)
+  |
+  v
+[ANÁLISE DE CONTEXTO]
+  ├─> Histórico de confrontos diretos
+  ├─> Desempenho recente (últimos 5 jogos)
+  ├─> Situação atual na tabela
+  ├─> Local do jogo (casa ou fora)
+  ├─> Escalações prováveis / desfalques
+  ├─> Clima (chuva pode influenciar)
+  └─> Motivação (ex: jogo decisivo?)
+  |
+  v
+[GERAÇÃO DE INSIGHTS]
+  ├─> Pontos fortes e fracos de cada time
+  ├─> Padrões de jogo identificáveis
+  └─> Probabilidade de vitória / empate / derrota
+  |
+  v
+[CONSTRUÇÃO DE PALPITES / APOSTAS]
+  ├─> Vencedor da partida
+  ├─> Ambas marcam (sim/não)
+  ├─> Mais de/menos de 2.5 gols
+  ├─> Número de escanteios / cartões
+  ├─> Resultado exato (ex: 2x1)
+  └─> Sugestão de aposta segura, ousada, equilibrada e arriscada
+  |
+  v
+[GERAR RESPOSTA PERSONALIZADA]
+  ├─> Baseado na pergunta do usuário
+  └─> Incluindo considerações e justificativas táticas
+  |
+  v
+[SCORE DE CONFIANÇA]
+  ├─> De 0 a 10: Qual a confiança da análise baseada nos dados disponíveis?
+  └─> Sugestão de dados faltantes para melhorar precisão
+  |
+  v
+FIM (Retorna resposta ao usuário)
