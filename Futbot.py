@@ -6,7 +6,7 @@ from Analise_Dados import carregar_documento_web
 from PesquisaMulti import pesquisar
 
 # URL da notícia
-URL = 'https://www.sofascore.com/football/match/vasco-da-gama-corinthians/hOszO'
+URL = 'https://www.sofascore.com/football/match/brentford-chelsea/Nsab#id:12436589'
 
 # Caminho do arquivo PDF
 CAMINHO_PDF = 'static/DadosTokens.pdf'
@@ -67,7 +67,7 @@ def responder_com_pdf(mensagem: str, time: str) -> str:
     ])
     
     prompt_formatado = template.format_prompt(
-        informações_jogo=documento_web,
+        informações_jogo=documento_web, 
         dados_pesquisa=dados_pesquisa,
         parametro=documento_pdf, # Parâmetro de análise ajustado e acertivo
         time=time, #Formato otimizado para o time
@@ -78,6 +78,8 @@ def responder_com_pdf(mensagem: str, time: str) -> str:
     return resposta.content
 
 # Testando a função
-time = "vasco e corinthians"
-resposta = responder_com_pdf("Quais são as apostas mais precisas para esta partida?", time)
+time = "chelsea x brentford"
+# resposta = responder_com_pdf("Quais são as apostas mais precisas para esta partida?", time)
+resposta = responder_com_pdf("de 1 a 10 as informação estao completas paa uma analise acertiva ?  ", time)
+
 print(resposta)
