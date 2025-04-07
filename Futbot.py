@@ -2,11 +2,15 @@ import os
 from langchain_community.document_loaders import PyMuPDFLoader, WebBaseLoader
 from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
-from Analise_Dados import carregar_documento_web
 from PesquisaMulti import pesquisar
+from Raspagem import obter_resumos_dos_links
 
 # URL da notícia
-URL = 'https://www.sofascore.com/football/match/brentford-chelsea/Nsab#id:12436589'
+URL = [
+        'https://www.sofascore.com/football/match/real-madrid-arsenal/RsEgb#id:13513403',
+        'https://www.fotmob.com/pt-BR/matches/real-madrid-vs-arsenal/2tfkqo#4737568',
+        'https://1xbet.whoscored.com/matches/1894555/preview/europe-champions-league-2024-2025-arsenal-real-madrid',
+    ]
 
 # Caminho do arquivo PDF
 CAMINHO_PDF = 'static/DadosTokens.pdf'
@@ -25,9 +29,10 @@ def carregar_documento_pdf(caminho: str) -> str:
 def responder_com_pdf(mensagem: str, time: str) -> str:
     """Gera uma resposta baseada no conteúdo do PDF, da web e da pesquisa SerpAPI."""
     chat = ChatGroq(model="llama-3.3-70b-versatile")
+    # chat = ChatGroq(model="llama3-70b-8192") # modelo otimizado para análise de apostas esportivas
 
     # Carrega os dados da web, do PDF e da pesquisa
-    documento_web = carregar_documento_web(URL)
+    documento_web = obter_resumos_dos_links(URL)
     documento_pdf = carregar_documento_pdf(CAMINHO_PDF)
     dados_pesquisa = pesquisar(time)
 
@@ -78,7 +83,7 @@ def responder_com_pdf(mensagem: str, time: str) -> str:
     return resposta.content
 
 # Testando a função
-time = "chelsea x brentford"
+time = "arsenal x real madrid"
 # resposta = responder_com_pdf("Quais são as apostas mais precisas para esta partida?", time)
 resposta = responder_com_pdf("de 1 a 10 as informação estao completas paa uma analise acertiva ?  ", time)
 

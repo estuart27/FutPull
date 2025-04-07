@@ -1,0 +1,42 @@
+[Início do Fluxo]
+    ↓
+[Mensagem Recebida via WhatsApp]
+    ↓
+[Webhook aciona view Django]
+    ↓
+[Cliente já cadastrado?]
+    ├── Sim → [Recupera dados e perfil do cliente]
+    └── Não → [Inicia cadastro do cliente (nome, preferências, localização, etc)]
+                    ↓
+            [Salva informações no banco de dados]
+    ↓
+[IA analisa a mensagem do cliente]
+    ↓
+[Classificação da intenção da mensagem]
+    ├── Dúvida sobre produto/serviço
+    ├── Interesse em promoção
+    ├── Deseja comprar
+    └── Suporte ou reclamação
+    ↓
+[IA escolhe resposta com base no perfil e histórico do cliente]
+    ↓
+[Resposta personalizada é enviada ao cliente]
+    ↓
+[Cliente interage com o chatbot]
+    ↓
+[Registrar interação no banco de dados]
+    ↓
+[Interação foi bem-sucedida?]
+    ├── Sim → [Salva como acerto para IA]
+    └── Não → [Salva como erro e registra para reavaliação]
+    ↓
+[Atualiza o perfil do cliente com nova informação]
+    ↓
+[Tarefa agendada (cronjob ou trigger) atualiza modelo de IA com base nas interações recentes]
+    ↓
+[Encerramento da conversa]
+    ├── Venda finalizada → [Envia link de pagamento e agradecimento]
+    ├── Encaminhar para atendente humano (se necessário)
+    └── Fim da sessão automatizada
+    ↓
+[Fim do Fluxo]
