@@ -10,11 +10,6 @@ def pesquisar(time: str) -> dict:
 
     consultas = [
         "Tabela do Campeonato Brasileiro",
-        f"jogadores lesionados e suspensos hoje de {time}",
-        f"Local do jogo {time}, qual estádio, clima e temperatura?",
-        f"Estilo de jogo e formação tática dos time {time}",
-        f"Pontos fortes e fracos do {time} na temporada"
-        f"Destaques e jogadores-chave para {time} neste confronto"
 
     ]
 
@@ -26,6 +21,10 @@ def pesquisar(time: str) -> dict:
     return resultados
 
 
+
+
+
+# Exemplo de uso
 if __name__ == "__main__":
     time = "Cruzeiro x Union de Santa Fe"
     resultados = pesquisar(time)

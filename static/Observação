@@ -1,18 +1,3 @@
-❌ O que ainda falta ou pode melhorar:
-Item	Detalhe	Importância	Comentário
-1	Estilo tático (pressão, posse, contra-ataque, etc.)	⭐⭐⭐⭐☆	Isso ajuda muito a prever como será o jogo.
-2	Bola parada (gols de escanteio, falta, pênaltis)	⭐⭐⭐⭐☆	Muitos jogos se resolvem nisso.
-3	XG (Expected Goals) dos últimos jogos e da temporada	⭐⭐⭐⭐⭐	É a métrica mais confiável para entender performance real.
-4	Histórico de confrontos entre os técnicos	⭐⭐⭐☆☆	Pode ser interessante pra contextos táticos.
-5	Fator casa/fora mais detalhado (desempenho específico em casa e fora)	⭐⭐⭐⭐☆	Pode mudar totalmente a análise.
-6	Cartões (média de cartões recebidos/sofridos)	⭐⭐⭐☆☆	Importante pra mercados de disciplina e controle do jogo.
-7	Árbitro da partida	⭐⭐⭐☆☆	Dependendo do estilo do árbitro, pode influenciar o jogo.
-8	Técnico e esquema tático esperado (ex: 4-3-3, 4-2-3-1)	⭐⭐⭐⭐☆	Ajuda a prever confrontos táticos e espaços.
-9	Substituições mais frequentes (quem entra e quando)	⭐⭐☆☆☆	Dá vantagem em análise ao vivo ou apostas em momentos.
-10	Condicionantes externos (clima, gramado, etc.)
-
-
-
 ANALISE DA IA DO PROPTS
 Eu diria que as informações estão em torno de 6 ou 7, em uma escala de 1 a 10, para uma análise acertiva.
 
@@ -25,12 +10,21 @@ As informações fornecidas incluem:
 * Informações sobre o histórico de confrontos entre os times
 * Algumas tendências de mercado
 
-No entanto, falta algumas informações importantes, como:
 
-* Mais detalhes sobre a forma física e mental dos jogadores
+-------Adicional--------------
+               ¨somente quando começa o jogo¨
+* Mais estatísticas e tendências sobre os times, como xG/xGA, pressão, posse de bola, etc. 
+3	XG (Expected Goals) dos últimos jogos e da temporada	⭐⭐⭐⭐⭐	É a métrica mais confiável para entender performance real.
 * Análise mais aprofundada das táticas e estratégias dos times
+
+
+---------Manuais------------------
+* Mais detalhes sobre a forma física e mental dos jogadores
 * Informações sobre as condições climáticas e do estádio
-* Mais estatísticas e tendências sobre os times, como xG/xGA, pressão, posse de bola, etc.
+*	Bola parada (gols de escanteio, falta, pênaltis)	⭐⭐⭐⭐☆	Muitos jogos se resolvem nisso.
+*	Cartões (média de cartões recebidos/sofridos)	⭐⭐⭐☆☆	Importante pra mercados de disciplina e controle do jogo.
+
+
 
 Além disso, as informações fornecidas parecem ser um pouco desorganizadas e não estão sempre claras, o que pode dificultar a análise.
 

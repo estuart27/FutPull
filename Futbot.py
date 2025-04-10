@@ -10,6 +10,7 @@ URL = [
         'https://www.sofascore.com/football/match/real-madrid-arsenal/RsEgb#id:13513403',
         'https://www.fotmob.com/pt-BR/matches/real-madrid-vs-arsenal/2tfkqo#4737568',
         'https://1xbet.whoscored.com/matches/1894555/preview/europe-champions-league-2024-2025-arsenal-real-madrid',
+        'https://www.fotmob.com/pt-BR/matches/real-madrid-vs-arsenal/2tfkqo#4737568:tab=stats',
     ]
 
 # Caminho do arquivo PDF
