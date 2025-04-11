@@ -17,7 +17,8 @@ def carregar_documentos_web(urls: list) -> str:
             documento += doc.page_content + '\n'
 
     # Define a chave da API do ChatGroq
-    api_key = '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'
+    # api_key = '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' # chave de API antiga Hub
+    api_key = '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' # chave de API atualizada Estuart
     os.environ['GROQ_API_KEY'] = api_key
 
     # Inicializa o ChatGroq

@@ -7,8 +7,8 @@ from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 import os
 
-
-api_key = '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'
+# api_key = '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' # chave de API antiga Hub
+api_key = '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' # chave de API atualizada Estuart
 os.environ['GROQ_API_KEY'] = api_key
 
 
@@ -48,11 +48,6 @@ def resumir_com_ia(texto: str, fonte: str) -> str:
      "Não faça análises, não dê palpites e não interprete os dados. Apenas reestruture de forma clara e objetiva."),
     ("user", "{input}")
     ])
-
-    # template = ChatPromptTemplate.from_messages([
-    #     ("system", "Você é um analista esportivo. Resuma os dados abaixo com foco em estatísticas relevantes, desempenho dos times e possíveis insights para apostas. Seja conciso e preserve as informações mais importantes."),
-    #     ("user", "{input}")
-    # ])
     
     prompt_formatado = template.format_prompt(input=f"Fonte: {fonte}\n\nTexto extraído:\n{texto}")
     resposta = chat.invoke(prompt_formatado.to_messages())
@@ -68,7 +63,9 @@ def obter_resumos_dos_links(links: list[str]) -> str:
         resumo = resumir_com_ia(texto_limpo, f"Fonte {i}")
         resumos_finais += f"\n\n=== 🧠 Resumo Inteligente da Fonte {i} ===\n{resumo}"
 
+    # print(resumos_finais)
     return resumos_finais
+
 
 if __name__ == "__main__":
     LINKS = [

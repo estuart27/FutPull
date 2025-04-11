@@ -21,9 +21,6 @@ def pesquisar(time: str) -> dict:
     return resultados
 
 
-
-
-
 # Exemplo de uso
 if __name__ == "__main__":
     time = "Cruzeiro x Union de Santa Fe"

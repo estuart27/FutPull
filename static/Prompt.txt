@@ -1,0 +1,20 @@
+
+-------------- PRONPTS --------------
+
+Analise a partida entre [Time1] vs [Time2], fornecendo as seguintes informações detalhadas:
+
+Condição física e mental dos jogadores: lesões, suspensões, fadiga acumulada, moral do elenco e notícias recentes que impactam o desempenho individual ou coletivo.
+
+Condições climáticas previstas e estado do estádio: clima no horário do jogo (chuva, vento, temperatura), qualidade e tipo do gramado, estrutura do estádio e impacto esperado no jogo.
+
+Desempenho em bolas paradas ⭐⭐⭐⭐☆: estatísticas de gols originados de escanteios, faltas diretas/indiretas e pênaltis; destaque para cobradores e estratégias.
+
+Estatísticas disciplinares ⭐⭐⭐☆☆: média de cartões amarelos e vermelhos recebidos e sofridos por jogo; jogadores propensos a punições.
+
+Tendências e desempenho por local/jogos grandes ou pequenos: rendimento como mandante/visitante, contra equipes do topo ou da parte inferior da tabela.
+
+Táticas e estratégias: formações utilizadas, estilo de jogo (posse, transição, marcação alta/baixa), variações táticas recentes e possíveis ajustes para o confronto.
+
+Análise do mercado de apostas: movimentação das odds, principais volumes apostados, variações suspeitas ou interessantes para análise pré-jogo.
+
+Resumo dos últimos 5 jogos de cada equipe: resultado, desempenho geral e destaques individuais, com todas essas informações apresentadas sem topicos em uma única linha e com menos tokens possivel.
