@@ -4,22 +4,38 @@ from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 from Pesquisa import pesquisar_na_web
 from Raspagem import obter_resumos_dos_links
+import json
 
-# URL da notícia
-URL = [
-        'https://www.fotmob.com/pt-BR/matches/man-city-vs-crystal-palace/2ri9zd#4506388',
 
-        'https://www.sofascore.com/football/match/manchester-city-crystal-palace/hr#id:12436610',
+# # URL da notícia
+# URL = [
+#         'https://www.fotmob.com/pt-BR/matches/athletic-club-vs-rayo-vallecano/2avs59#4507055',
 
-        'https://1xbet.whoscored.com/matches/1821187/preview/england-premier-league-2024-2025-manchester-city-crystal-palace',
+#         'https://www.fotmob.com/pt-BR/matches/athletic-club-vs-rayo-vallecano/2avs59#4507055:tab=table',
 
-        'https://www.fotmob.com/pt-BR/matches/man-city-vs-crystal-palace/2ri9zd#4506388:tab=table',
-    ]
+#         'https://www.sofascore.com/football/match/athletic-club-rayo-vallecano/tgbsAgb#id:12437621',
 
-# Testando a função
-time = input("Digite o nome do time: ")
+#         'https://1xbet.whoscored.com/matches/1821685/preview/spain-laliga-2024-2025-athletic-club-rayo-vallecano',
+#     ]
 
-adicional_manual = input("Digite informações adicionais: ")
+# # Testando a função
+# time = input("Digite o nome do time: ")
+
+# adicional_manual = input("Digite informações adicionais: ")
+
+# Carregar os dados da análise
+try:
+    with open("dados_analise.json", "r") as f:
+        dados = json.load(f)
+    
+    time = dados["partida"]
+    adicional_manual  = dados["observacoes"]
+    URL = dados["links"]
+    
+    # Continue seu processamento aqui...
+    
+except Exception as e:
+    print(f"Erro ao carregar dados: {e}")
 
 # Caminho do arquivo PDF
 CAMINHO_PDF = 'static/DadosTokens.pdf'
