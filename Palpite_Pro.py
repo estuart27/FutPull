@@ -38,7 +38,9 @@ except Exception as e:
     print(f"Erro ao carregar dados: {e}")
 
 # Caminho do arquivo PDF
-CAMINHO_PDF = 'static/DadosTokens.pdf'
+# CAMINHO_PDF = 'static/DadosTokens.pdf'
+CAMINHO_PDF = 'static/DadosTokens1.pdf'
+
 
 # api_key = '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' # chave de API antiga Hub
 api_key = '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' # chave de API atualizada Estuartos.environ['GROQ_API_KEY'] = api_key
