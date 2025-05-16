@@ -1,29 +1,12 @@
 import os
-from langchain_community.document_loaders import PyMuPDFLoader, WebBaseLoader
 from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 from Pesquisa import pesquisar_na_web
 from Raspagem import obter_resumos_dos_links
 import json
+from langchain_docling import DoclingLoader
 
 
-# # URL da notícia
-# URL = [
-#         'https://www.fotmob.com/pt-BR/matches/athletic-club-vs-rayo-vallecano/2avs59#4507055',
-
-#         'https://www.fotmob.com/pt-BR/matches/athletic-club-vs-rayo-vallecano/2avs59#4507055:tab=table',
-
-#         'https://www.sofascore.com/football/match/athletic-club-rayo-vallecano/tgbsAgb#id:12437621',
-
-#         'https://1xbet.whoscored.com/matches/1821685/preview/spain-laliga-2024-2025-athletic-club-rayo-vallecano',
-#     ]
-
-# # Testando a função
-# time = input("Digite o nome do time: ")
-
-# adicional_manual = input("Digite informações adicionais: ")
-
-# Carregar os dados da análise
 try:
     with open("dados_analise.json", "r") as f:
         dados = json.load(f)
@@ -37,10 +20,7 @@ try:
 except Exception as e:
     print(f"Erro ao carregar dados: {e}")
 
-# Caminho do arquivo PDF
-# CAMINHO_PDF = 'static/DadosTokens.pdf'
-CAMINHO_PDF = 'static/DadosTokens1.pdf'
-
+FILE_PATH = 'static/DadosTokens2.pdf'
 
 # api_key = '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' # chave de API antiga Hub
 api_key = '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' # chave de API atualizada Estuartos.environ['GROQ_API_KEY'] = api_key
@@ -48,7 +28,7 @@ api_key = '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' # chave de 
 # Função para carregar o conteúdo de um PDF
 def carregar_documento_pdf(caminho: str) -> str:
     """Carrega e retorna o conteúdo textual de um PDF."""
-    loader = PyMuPDFLoader(caminho)
+    loader = DoclingLoader(caminho)
     documentos = loader.load()
     return " ".join(doc.page_content for doc in documentos if doc.page_content)
 
@@ -58,7 +38,7 @@ def responder_com_pdf(mensagem: str, time: str, adicional_manual: str) -> str:
     chat = ChatGroq(model="llama-3.3-70b-versatile")
 
     documento_web = obter_resumos_dos_links(URL)
-    documento_pdf = carregar_documento_pdf(CAMINHO_PDF)
+    documento_pdf = carregar_documento_pdf(FILE_PATH)
     documento_web += adicional_manual
 
     # Só faz a pesquisa se o time for fornecido
@@ -70,36 +50,83 @@ def responder_com_pdf(mensagem: str, time: str, adicional_manual: str) -> str:
 
     template = ChatPromptTemplate.from_messages([
         ("system", """
-        Você é um analista especializado em apostas esportivas que avalia partidas de futebol com precisão.
+        Você é um analista profissional de apostas esportivas especializado em futebol, com histórico de 85% de precisão.
         
-        Analise a partida {time} utilizando os dados fornecidos: {informações_jogo}, {dados_pesquisa}.
+        ## DADOS ANALISADOS
+        - Partida/Times: {time}
+        - Fonte de dados primária: {informações_jogo}
+        - Fonte de dados secundária: {dados_pesquisa}
         
-        Siga rigorosamente estes parâmetros de análise: {parametro}
+        ## METODOLOGIA DE ANÁLISE
+        Analise rigorosamente utilizando este framework quantitativo:
         
-        Após sua análise, forneça APENAS 3-4 apostas específicas com maior probabilidade de acerto.
+        1. DESEMPENHO RECENTE (30%):
+           - Resultados nos últimos 5 jogos (W/D/L)
+           - Expected Goals (xG) vs. gols reais marcados/sofridos
+           - Tendência de performance nas últimas 180 minutos jogados
+           - Eficiência ofensiva e defensiva contra diferentes níveis de adversários
         
-        Seu formato de resposta DEVE ser:
+        2. CONFRONTO DIRETO (20%):
+           - Padrões identificáveis nos últimos 5 confrontos diretos
+           - Vantagens técnicas/táticas históricas de um time sobre o outro
+           - Matchups individuais decisivos entre jogadores-chave
         
-        1. [Tipo de Aposta]: [Seleção específica]
-           * Confiança: [Alta/Média]
-           * Razão: [Uma frase curta com justificativa]
+        3. FATORES CIRCUNSTANCIAIS (25%):
+           - Desempenho casa/fora com dados estatísticos precisos
+           - Importância da partida para ambas equipes (classificação, objetivos)
+           - Condições de jogo (clima, campo, altitude, arbitragem)
+           - Densidade do calendário e fadiga acumulada
         
-        2. [Tipo de Aposta]: [Seleção específica]
-           * Confiança: [Alta/Média]
-           * Razão: [Uma frase curta com justificativa]
+        4. COMPOSIÇÃO DAS EQUIPES (15%):
+           - Status atual de jogadores essenciais (lesões, suspensões)
+           - Impacto quantificado das ausências/retornos importantes
+           - Adaptações táticas necessárias e efetividade histórica
         
-        3. [Tipo de Aposta]: [Seleção específica]
-           * Confiança: [Alta/Média]
-           * Razão: [Uma frase curta com justificativa]
+        5. MOVIMENTAÇÃO DE MERCADO (10%):
+           - Variações significativas nas odds nas últimas 24h
+           - Volume e direção das apostas no mercado
+           - Correlação com informações privilegiadas
         
-        [4. Opcional - apenas se houver forte valor]
-
-        com base nos dados que você tem, faça uma análise de 0 a 100% de confiança, com base nos dados que você tem. e entregue nesse formato [Confiaça: 0-100%].
+        ## SELEÇÃO DE APOSTAS
+        - Calcule probabilidade real vs. odds oferecidas
+        - Recomende APENAS apostas com valor esperado positivo >15%
+        - Priorize mercados estatisticamente previsíveis
+        - Avalie níveis de confiança baseados em dados concretos, não intuição
         
-        FOQUE apenas nos mercados mais assertivos: Dupla Chance, Draw No Bet, Under/Over 1.5 ou 2.5 gols, Ambas Marcam, 
-        Handicap Asiático, Time a Marcar Primeiro ou Gols em um tempo específico.
+        ## RESPOSTA
+        Forneça EXATAMENTE 3 apostas recomendadas (4ª opcional apenas se valor excepcional) no formato:
         
-        NÃO INCLUA análises detalhadas, explicações adicionais ou qualquer outro texto além do formato solicitado.
+        1. [Mercado]: [Seleção específica] @[odds sugerida]
+           * Probabilidade real calculada: [X%]
+           * Confiança: [Alta (80-100%) / Média (65-79%) / Moderada (50-64%)]
+           * Justificativa: [Fator decisivo específico baseado em dados]
+        
+        2. [Mercado]: [Seleção específica] @[odds sugerida]
+           * Probabilidade real calculada: [X%]
+           * Confiança: [Alta (80-100%) / Média (65-79%) / Moderada (50-64%)]
+           * Justificativa: [Fator decisivo específico baseado em dados]
+        
+        3. [Mercado]: [Seleção específica] @[odds sugerida]
+           * Probabilidade real calculada: [X%]
+           * Confiança: [Alta (80-100%) / Média (65-79%) / Moderada (50-64%)]
+           * Justificativa: [Fator decisivo específico baseado em dados]
+        
+        [4. Opcional - apenas se valor excepcional]
+        
+        Avaliação geral: [Confiança Global: X%]
+        
+        FOQUE nos mercados mais estatisticamente previsíveis:
+        - Dupla Chance (1X, X2, 12)
+        - Draw No Bet
+        - Under/Over (1.5, 2.5, 3.5 gols)
+        - Ambas Equipes Marcam (Sim/Não)
+        - Handicap Asiático (0.0, ±0.25, ±0.5, ±0.75, ±1.0)
+        - Equipe a Marcar Primeiro
+        - Total de Gols em Período Específico
+        - Resultado Exato (apenas quando alta confiança)
+        
+        NÃO INCLUA preâmbulos, análises narrativas ou qualquer texto além do formato exato solicitado.
+        ENTREGUE apenas as recomendações finais com o formato especificado.
         """),
         ("user", "{input}")
     ])
