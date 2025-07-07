@@ -7,10 +7,8 @@ from langchain_groq import ChatGroq
 from langchain.prompts import ChatPromptTemplate
 import os
 
-# api_key = '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' # chave de API antiga Hub
-api_key = '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' # chave de API atualizada Estuart
+api_key = 'API' # chave de API atualizada Estuartos.environ['GROQ_API_KEY'] = api_key
 os.environ['GROQ_API_KEY'] = api_key
-
 
 def carregar_pagina_html(url: str) -> str:
     chromedriver_autoinstaller.install()
@@ -70,8 +68,6 @@ def obter_resumos_dos_links(links: list[str]) -> str:
 if __name__ == "__main__":
     LINKS = [
         'https://www.sofascore.com/football/match/real-madrid-arsenal/RsEgb#id:13513403',
-        'https://www.fotmob.com/pt-BR/matches/real-madrid-vs-arsenal/2tfkqo#4737568',
-        'https://1xbet.whoscored.com/matches/1894555/preview/europe-champions-league-2024-2025-arsenal-real-madrid',
     ]
 
     resumo_final = obter_resumos_dos_links(LINKS)

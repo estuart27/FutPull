@@ -1,5 +1,6 @@
 from langchain_docling import DoclingLoader
 
+
 # Caminho para o arquivo local (ex: PDF salvo no seu computador)
 FILE_PATH = ["dados.pdf"]  # ajuste o caminho conforme o seu arquivo
 
